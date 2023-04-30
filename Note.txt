@@ -1,0 +1,154 @@
+->Spring...? :
+-------------
+Spring is modularised framework developed by Rod Johnson in2003. It is a light weight &open source framework.
+light weight: as it supports POJO model
+open source:as there is no need to purchase any Licence
+Spring is a complete &modular framework developed to design any real-time application.
+complete: as it can be used to develope all layer of application
+modular  : as it can be used to develope perticular layer of application
+
+->Advantages of Spring :
+----------------------
+	Spring is non-invasive : as it does not forces us to extend any class or implement any interface
+	Spring is light weight  :as it supports POJO model
+	Loose coupling : as we do not need to change java code
+	Spring has its own container, so it doesn’t need server to run application
+	Spring supports all (Web, Mobile based, Desktop based) applications
+	Spring can integrate another framework/tool easily
+
+Bean Scope :
+----------
+	When defining a <bean> in Spring in xml file, you have the option for declaring a scope for that bean.
+	The Spring Framework supports following five scopes-
+
+1)singleton : This scopes the bean definition to a single instance per Spring IoC container (default).
+2)prototype : This scopes a single bean definition to have any number of object instances.
+3)request :  This scopes a bean definition to an HTTP request. Only valid in the context of a web-aware Spring ApplicationContext.
+4)session : This scopes a bean definition to an HTTP session. Only valid in the context of a web-aware Spring ApplicationContext.
+5)global-session : This scopes a bean definition to a global HTTP session. Only valid in the context of a web-aware Spring ApplicationContext.
+
+Dependany Injection:
+-------------------
+	In our java class data members are nothing but the dependencies and assigning values to them is Dependancy Injection.
+
+This Dependancy Injection can be achieved in 2 ways:
+1)	Setter Injection
+2)	Constructor Injection
+
+In Spring these dependancies will be injected by Spring IOC container to our Spring class (bean).
+Spring container will come to know about injection type from spring configuration file.
+	
+Setter Injection :
+	In Setter Injection, container uses setter methods in POJO class to inject dependancies.
+	In this, our class must contain setter methods otherwise we cannot inject dependancies.
+
+Constructor Injection :
+	In Constructor Injection, container uses constructor in class to inject dependancies.
+
+Setter Injection vs Constructor Injection:
+------------------------------------------
+SI: Setter injection will override constructor injected values.
+CI: Constructor injection will not override Setter injected values.
+SI: Setter injection makes bean class object as mutable (changeble).
+CI: Constructor injection makes bean class object as immutable (unchangeble).
+SI: Partial injection of dependancies is possible.
+CI: Partial injection of dependancies is not possible.
+
+Autowiring :
+----------
+	Autowiring is a concept where there is no need to inject secondary dependancies. Spring container will inject secondary dependancies on its own.
+	Autowiring supports only secondary type dependancies(not primitive).
+	By default Autowiring is disabled. If we enable Autowiring, Spring container will take care of injecting secondary type dependancies. 
+
+Autowiring can be achieved –
+1)	byName
+2)	byType
+3)	Constructor
+
+1) by Name :
+The byName mode injects the object dependency according to name of the bean. In this case, bean id and reference name must be same.
+For eg.  Consider Student class with secondary dependency of Address class  as ‘address’ then:-
+	Spring container will find secondary dependancy in Student class, then it will take name (add) & matches it with bean id.
+	If match found, then it verifies the class of bean & type of secondary injection is same or not.
+	If same : Setter Injection
+	If not : property remains unwired(as id is unique, no ambiguity occurs).
+
+2)	by Type:
+The byType mode injects the object dependency according to type. In this case, bean id and reference name may be different. But there must be only one bean of a type.
+For eg.  Consider Student class with secondary dependency of Address class  as ‘address’ then:-
+	Spring container will find secondary dependancy in Student class, then it will take type of that dependancy (Address) & matches it with class in bean.
+	If match found, it will inject property using Setter Injection.
+	If match not found, property remains unwired.
+
+3) Constructor:
+The constructor mode injects the dependency by calling the constructor of the class. It calls the constructor having large number of parameters.
+	It internally uses ‘byType’,  but while injecting property it uses constructor based injection.
+
+Spring MVC Execution Flow :
+---------------------------
+1 First request will be recieved by DispatcherServlet. DispatcherServlet is Front Controller of Spring MVC.It is responsible to manage the flow of the Spring MVC application.
+2 DispatcherServlet will come to know about corresponding Controller class with the help of HandlerMapping.
+3 Controller will process the request and returns ModelAndView object to DispatcherServlet.
+4 with the help of ViewResolver, DispatcherServlet will get actual view page.
+5 DispatcherServlet will pass that object to View page and generates response i.e. View.
+
+Spring Boot :
+-------------
+->Spring Boot is an approach to develop Spring Based applications with minimal or less configurations.
+
+-> What ever the applications we can develop by using Spring same type of applications can be developed by using Spring Boot also.
+
+		1) Standalone apps
+		2) Web apps
+		3) Distributed apps (Webservices & Restful Services)
+
+------------------------------------------------------------------------
+-> The problem with spring framework is we have to manage configurations manually.
+
+-> To simpliy configurations in the application Spring Team released Spring Boot.
+
+-> Spring Boot is not a seperate framework
+
+-> We should not say that Spring Boot is replacement for Spring.
+
+-> Spring Boot is an approach to develop Spring Based Applications with Minimal or less configurations.
+
+Advantages of Spring Boot
+--------------------------
+1) Starter poms
+2) Auto Configuration
+3) Embedded Servers
+4) Actuators
+5) Embedded Databases Integration
+6) Rapid Application Development
+
+---------------------------------------------------------------------
+-> From Boot start class we have to understand below 2 things very clearly
+
+	1) @SpringBootApplication
+	2) SpringApplication.run( ) method
+
+-> The @SpringBootApplication annotation is equal to below 3 annotations
+
+	1) @Configuration
+	2) @EnableAutoConfiguration
+	3) @ComponentScan
+
+-> SpringApplication.run(..) method performs bootstrapping of spring boot application.
+Note: Bootstrapping means starting the application.
+
+-> In Realtime we will develop our applications using Layered Architecture
+--------------------------------------------------------------------------
+		-> Presentation Layer (Ui)
+		-> Web Layer (Controller Classes)
+		-> Business Layer (Service classes)
+		-> Persistence Layer (Dao/Repository classes)
+
+
+-> User Interface Logic will be available in Presentation Layer
+-> Web layer contains Controller classes which are responsible to handle request and response in web application.
+-> Business Layer Contains Service classes which are responsible to execute business logic
+
+  Ex: Sendng Email, Password Encryption & Decryption, Report Generation etc.
+
+-> Persistence Layer Contains Dao/Repository classes which are responsible to communicate with database.
